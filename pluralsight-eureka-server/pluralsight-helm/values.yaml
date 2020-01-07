@@ -1,0 +1,31 @@
+fastpassConsoleImage: lempuris/pluralsight-eureka-fastpass-console:0.0.1-SNAPSHOT
+fastpassConsolePort: 8082
+fastpassConsoleServicetype: LoadBalancer
+fastpassConsoleReplicas: 1
+fastpassConsoleName: pluralsight-eureka-fastpass-console
+
+eurekaServerImage: lempuris/pluralsight-eureka-server:0.0.1-SNAPSHOT
+eurekaServerPort: 8761
+eurekaServerServicetype: LoadBalancer
+eurekaServerReplicas: 1
+eurekaServerName: pluralsight-eureka-server
+
+tollRateBillboardImage: lempuris/pluralsight-eureka-tollrate-billboard:0.0.1-SNAPSHOT
+tollRateBillboardPort: 8081
+tollRateBillboardServicetype: LoadBalancer
+tollRateBillboardReplicas: 1
+tollRateBillboardName: pluralsight-eureka-tollrate-billboard
+
+tollRateServiceImage: lempuris/pluralsight-eureka-tollrate-service:0.0.1-SNAPSHOT
+tollRateServicePort: 8084
+tollRateServiceServicetype: LoadBalancer
+tollRateServiceReplicas: 1
+tollRateServiceName: pluralsight-eureka-tollrate-service
+
+fastpassImage: lempuris/fastpass-service:0.0.1-SNAPSHOT
+fastpassPort: 8083
+fastpassServicetype: LoadBalancer
+fastpassReplicas: 1
+fastpassName: fastpass-service
+
+

@@ -1,0 +1,64 @@
+version: '3.7'
+# Removed subprocess.CalledProcessError: Command '['/usr/local/bin/docker-credential-desktop', 'get']' returned non-zero exit status 1
+# I had this:
+# cat ~/.docker/config.json
+# {"auths":{},"credsStore":"", "credsStore":"desktop","stackOrchestrator":"swarm"}
+# I updated to this:
+# {"auths":{},"credsStore":"","stackOrchestrator":"swarm"}
+services:
+#docker run -p 8080:8080 lempuris/todo-web-application-mysql:0.0.1-SNAPSHOT 
+  pluralsight-eureka-server:
+    image: lempuris/pluralsight-eureka-server:0.0.1-SNAPSHOT
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8761:8761"
+    restart: always
+ 
+      
+  fastpass-service:
+    image: lempuris/fastpass-service:0.0.4-SNAPSHOT
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    restart: always
+    
+  pluralsight-eureka-tollrate-service:
+    image: lempuris/pluralsight-eureka-tollrate-service:0.0.4-SNAPSHOT
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    restart: always
+    
+  
+  pluralsight-eureka-tollrate-billboard:
+    image: lempuris/pluralsight-eureka-tollrate-billboard:0.0.4-SNAPSHOT
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    restart: always
+    depends_on: # Start the depends_on first
+      - pluralsight-eureka-tollrate-service 
+      
+      
+      
+  pluralsight-eureka-fastpass-console:
+    image: lempuris/pluralsight-eureka-fastpass-console:0.0.4-SNAPSHOT
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    restart: always
+    depends_on: # Start the depends_on first
+      - fastpass-service 
+    
+
+

@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: {{ .Values.eurekaServerName}}
+  name: {{ .Values.eurekaServerName}}
+spec:
+  replicas: {{ .Values.eurekaServerReplicas}}
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: {{ .Values.eurekaServerName}}
+    spec:
+      containers:
+      - image: {{ .Values.eurekaServerImage}}
+        name: {{ .Values.eurekaServerName}}
+        ports:
+        - containerPort: {{ .Values.eurekaServerPort}}
+        resources: {}
+      restartPolicy: Always
+status: {}

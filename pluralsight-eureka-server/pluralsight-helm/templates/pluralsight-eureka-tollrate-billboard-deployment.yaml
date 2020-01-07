@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: {{ .Values.tollRateBillboardName}}
+  name: {{ .Values.tollRateBillboardName}}
+spec:
+  replicas: {{ .Values.tollRateBillboardReplicas}}
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: {{ .Values.tollRateBillboardName}}
+    spec:
+      containers:
+      - image: {{ .Values.tollRateBillboardImage}}
+        name: {{ .Values.tollRateBillboardName}}
+        ports:
+        - containerPort: {{ .Values.tollRateBillboardPort}}
+        resources: {}
+      restartPolicy: Always
+status: {}

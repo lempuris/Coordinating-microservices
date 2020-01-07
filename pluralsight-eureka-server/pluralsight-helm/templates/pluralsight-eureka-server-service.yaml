@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: {{ .Values.eurekaServerName}}
+  name: {{ .Values.eurekaServerName}}
+spec:
+  ports:
+  - name: "8761"
+    port: {{ .Values.eurekaServerPort}}
+    targetPort: {{ .Values.eurekaServerPort}}
+  type: {{ .Values.eurekaServerServicetype}}
+  selector:
+    io.kompose.service: {{ .Values.eurekaServerName}}
+status:
+  loadBalancer: {}

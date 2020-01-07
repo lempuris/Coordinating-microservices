@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: {{ .Values.tollRateBillboardName}}
+  name: {{ .Values.tollRateBillboardName}}
+spec:
+  ports:
+  - name: "8081"
+    port: {{ .Values.tollRateBillboardPort}}
+    targetPort: {{ .Values.tollRateBillboardPort}}
+  type: {{ .Values.tollRateBillboardServicetype}}
+  selector:
+    io.kompose.service: {{ .Values.tollRateBillboardName}}
+status:
+  loadBalancer: {}

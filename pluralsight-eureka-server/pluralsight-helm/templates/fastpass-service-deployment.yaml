@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: {{ .Values.fastpassName}}
+  name: {{ .Values.fastpassName}}
+spec:
+  replicas: {{ .Values.fastpassReplicas}}
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: {{ .Values.fastpassName}}
+    spec:
+      containers:
+      - image: {{ .Values.fastpassImage}}
+        name: {{ .Values.fastpassName}}
+        ports:
+        - containerPort: {{ .Values.fastpassPort}}
+        resources: {}
+      restartPolicy: Always
+status: {}

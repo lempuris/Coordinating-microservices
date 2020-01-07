@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: {{ .Values.fastpassConsoleName}}
+  name: {{ .Values.fastpassConsoleName}}
+spec:
+  ports:
+  - name: "8082"
+    port: {{ .Values.fastpassConsolePort}}
+    targetPort: {{ .Values.fastpassConsolePort}}
+  type: {{ .Values.fastpassConsoleServicetype}}
+  selector:
+    io.kompose.service: {{ .Values.fastpassConsoleName}}
+status:
+  loadBalancer: {}
